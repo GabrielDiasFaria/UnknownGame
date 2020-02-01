@@ -1,0 +1,65 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Meu primeiro Jogo</title>
+
+    <style>
+        #screen {
+            border: 5px solid #CCC;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+            image-rendering: -moz-crisp-edges;
+            /*width: 550px;
+            height: 550px;
+            left: 30%;
+            top: 10; */
+        }
+    </style>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+    <div class="">
+        <canvas id="screen" width="992" height="576">
+        </canvas>
+    </div>
+
+    <script type="module">
+        import socketControllerClient from './js/socketControllerClient.js' // SocketController
+        import keyboardListener from './js/keyboardListener.js';
+        import renderScreen from './js/renderScreen.js';
+
+        const socket = io() // Inicia SocketClient
+        const skContClient = socketControllerClient() // SocketController
+        const screen = document.getElementById("screen")
+        let gv_state
+        let run = false
+        const rScreen = renderScreen(screen, socket)
+
+        skContClient.socket = socket
+        let kbListener = keyboardListener(document, skContClient)
+
+        socket.on('connect', () => {
+            //console.log(`Player connected SocketId:  ${socket.id}`)
+
+        })
+
+        socket.on('gameObject', (state) => {
+            gv_state = state
+            const socketId = socket.id
+
+            if (!run)
+                loop()
+        })
+
+        function loop() {
+            run = true
+            window.requestAnimationFrame(loop, screen)
+            rScreen.render(gv_state)
+        }
+
+    </script>
+</body>
+
+</html>
