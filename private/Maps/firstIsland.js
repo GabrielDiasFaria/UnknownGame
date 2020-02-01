@@ -1,6 +1,8 @@
 export default function firstIsland() {
 
     const map = {
+        players: {
+        },
         Assets: {
             0: "Grass.png"
         },
@@ -26,7 +28,12 @@ export default function firstIsland() {
         ]
     }
 
-    function getVision(x, y) {
+    function getVision(x, y, players) {
+        for (const playerId in players) {
+            console.log("Player: " + playerId)
+            map.players[playerId] = players[playerId]
+        }
+        //map.players = players
         return map
     }
 

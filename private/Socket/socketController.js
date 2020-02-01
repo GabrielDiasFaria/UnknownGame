@@ -23,7 +23,8 @@ export default function socketController() {
     }
 
     function notifyAll(type, command) {
-        //.log(`Emmiting ${type}`)
+        console.log(`Emmiting ${command}`)
+
         sockets.emit(type, command)
     }
 
@@ -51,7 +52,6 @@ export default function socketController() {
                 currentGame.removePlayer({ socketId: socketId })
                 currentGame.state.countPlayersOnline--;
                 console.log("Players Online: ", currentGame.state.countPlayersOnline)
-                //console.log("Players: ", currentGame.state.players)
                 notifyAll("gameObject", currentGame.state)
             })
         })

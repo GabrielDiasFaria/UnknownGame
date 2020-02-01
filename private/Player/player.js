@@ -1,6 +1,7 @@
 export default function player() {
 
     let viewMap
+    let viewPlayers
 
     let socketId
     let x
@@ -64,7 +65,7 @@ export default function player() {
 
     return {
         // Atributos
-        viewMap, socketId, x, y, width, height, outfit, maxLife, currentLife, maxMana, currentMana, currentClip, clipX, clipY,
+        viewMap, viewPlayers, socketId, x, y, width, height, outfit, maxLife, currentLife, maxMana, currentMana, currentClip, clipX, clipY,
         // Métodos
         setCommandPlayer
     }

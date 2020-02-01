@@ -1,6 +1,13 @@
 // JS Server
 // Responsável por iniciar o servidor
 
+// ctrl+c => desliga servidor
+// npx nodemon => nodemon deixa o server com hotReload
+// npm install nodemon
+// npx serve => servidor temporário para rodar projeto
+// nvm install node => Instala versão mais nova para os imports
+// node --experimental-modules server.js
+
 import express from 'express'
 import http from 'http'
 import socketController from './private/Socket/socketController.js'

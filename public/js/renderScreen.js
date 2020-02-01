@@ -8,7 +8,7 @@ export default function renderScreen(screen, socket) {
 
         for (const playerId in state.players) {
             if (socket.id != playerId)
-                return
+                continue
 
             const player = state.players[playerId];
 
@@ -33,6 +33,27 @@ export default function renderScreen(screen, socket) {
                         state.screen.sizeGlobalY // Tamanho da Imagem
                     )
                 }
+            }
+
+            // DRAW PLAYERS
+            for (const playersId in player.viewMap.players) {
+                const playerOther = player.viewMap.players[playersId];
+
+                var image = new Image()
+                image.src = state.config.pathAssetOutfit + playerOther.outfit;
+                context.fillStyle = "white";
+
+                context.drawImage(
+                    image,     // Imagem
+                    playerOther.clipX, // X Captura caso seja varios em um imagem só
+                    playerOther.clipY, // Y Captura caso seja varios em uma imagem só
+                    state.screen.sizeGlobalX, // Tamanho da Imagem
+                    state.screen.sizeGlobalY,// Tamanho da Imagem
+                    playerOther.x,     // X Inicio da Imagem
+                    playerOther.y,     // Y Inicio da Imagem
+                    state.screen.sizeGlobalX, // Tamanho da Imagem
+                    state.screen.sizeGlobalY // Tamanho da Imagem
+                )
             }
 
             // DRAW PLAYER

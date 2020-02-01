@@ -36,7 +36,7 @@ export default function game() {
         playerAdd.currentClip = 0
         playerAdd.clipX = 0
         playerAdd.clipY = 0
-        playerAdd.viewMap = firstIslandAdd.getVision(playerAdd.x, playerAdd.y)
+        playerAdd.viewMap = firstIslandAdd.getVision(playerAdd.x, playerAdd.y, state.players)
 
         state.players[command.socketId] = playerAdd
     }
